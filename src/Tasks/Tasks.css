@@ -1,0 +1,86 @@
+
+.taskForm {
+    background-color:rgb(241, 202, 246)
+  
+  }
+#taskChart{
+  max-width: 250px;
+  max-height: 250px;
+  align-content: center;
+}
+ .newTask {
+  background-color: rgb(241, 202, 246);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: large;
+  display: flex;
+  flex-direction: column
+ }
+ 
+  .tasks {
+    background-color: rgb(241, 202, 246);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: large;
+
+  }
+  .tasksToDo {
+    background-color: rgb(241, 202, 246);
+    text-align: left;
+
+  }
+ 
+ .finishedTasks {
+  background-color: rgb(241, 202, 246);
+  text-align: left;
+
+ }
+  .field {
+      font-size: medium;
+      color: black ;
+  }
+
+
+ input:checked {
+   margin:10px;
+   margin-left:50px
+  
+
+  }
+  #taskButton {
+     
+      background-color: #82e9b7;
+      font-size: 16px;
+      color: white;
+      text-align: center;  
+      transition-duration: 0.4s;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 30px
+    
+  }
+  #taskButton:hover {background-color: #37b678}
+  
+  #taskButton:active {
+    background-color: #025d31;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+  #newTaskButton {
+     
+    background-color: #509be5;
+    font-size: 14px;
+    color: white;
+    text-align: center;  
+    transition-duration: 0.4s;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 30px;
+    max-width: 150px;
+ 
+}
+#newTaskButton:hover {background-color: #0a5bac}
+
+#newTaskButton:active {
+  background-color: #01274d;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+} 
