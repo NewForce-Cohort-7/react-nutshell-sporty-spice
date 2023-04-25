@@ -1,4 +1,6 @@
 import { Route, Routes, Outlet } from "react-router-dom"
+import { TaskList } from "../Tasks/Tasks"
+import {TaskForm } from "../Tasks/TasksForm"
 
 
 export const ApplicationViews = () => {
@@ -13,6 +15,10 @@ export const ApplicationViews = () => {
 	</>
 	
 }>
+
+		<Route path="tasks" element={ <TaskList /> } />
+		<Route path="newtask" element={ <TaskForm /> } />
+
 </Route>
 	</Routes>
 	)
