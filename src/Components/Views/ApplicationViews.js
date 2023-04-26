@@ -16,6 +16,23 @@ export const ApplicationViews = () => {
 	
 }>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
 		<Route path="tasks" element={ <TaskList /> } />
 		<Route path="newtask" element={ <TaskForm /> } />
 		<Route path="task/:taskId/edit" element={ <TaskEdit/> } />

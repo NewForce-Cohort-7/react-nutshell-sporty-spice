@@ -47,8 +47,10 @@ export const TaskEdit = () => {
               className="form-control"
               placeholder="Edit Task"
               value={task.toDo}
-              onChange={(evt) => {
-                setTask({ ...task, toDo: evt.target.value })
+              onChange={(event) => {
+                const copy = {...task}
+                copy.toDo = event.target.value
+                setTask(copy)
               }}
             />
           </div>
@@ -65,7 +67,7 @@ export const TaskEdit = () => {
                             (event) => {
                             const copy = {...task} 
                             copy.dateToComplete = event.target.value 
-                            update(copy)
+                            setTask(copy)
                         } 
                     }/>
                  </div>

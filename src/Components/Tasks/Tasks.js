@@ -1,19 +1,11 @@
 // taskObject.js is a child component of TaskList.js
 
 import { Link } from "react-router-dom"
-import { deleteTask } from "../TasksApiManager"
+import { useState, useNavigate } from "react"
 
 export const Ticket = ({ taskObject,  getAllTasks}) => { // all the variables in {} are props being passed down from the parent for us to use here (the child)
-      //Delete
-const deleteButton = () => {
-    return <button onClick={() => {
-        deleteTask(task)
-            .then(() => {
-                navigate("/tasks")
-
-            })
-    }} className="ticket__delete">Delete</button>
-}
+    const [tasks, setTasks] = useState([])
+    const navigate = useNavigate()
 
 fetch(`http://localhost:8088/tasks/${taskObject.id}`, {
             method: "PUT", //Method is PUT because we are updating the data
@@ -25,21 +17,34 @@ fetch(`http://localhost:8088/tasks/${taskObject.id}`, {
             .then(response => response.json())
             .then(getAllTasks)
     }
+
+
     // callback function - for each ticket, return HTML representation; footer is condensed if/else statement
-    return <section className="task" key={`task--${taskObject.id}`}>
- <header>
-            {
-             <Link to={`/tasks/${taskObject.id}/edit`}>Task {taskObject.id}</Link>
-            }
+    return <>
 
-        </header>
-        <section>To do: {taskObject.toDo}</section>
-        <section>Date: {taskObject.dateToComplete}</section>
-        <footer>
-         
-            {
-                deleteButton()
-            }
-        </footer>
-    </section>
+    <h2>To-Do List</h2>
+    <button onClick={() => navigate("/newtask")}>New Task</button>
 
+        <article className="tasksToDo">
+              {tasks.map((task) => {
+            return <>
+            <section className="task" key={task.id}>
+                <div>To Do: {task.task}</div>
+                <div>Date: {task.dateToComplete}</div>
+                <div>
+      <Checkbox
+        label="Done!"
+        value={checked}
+        onChange={handleChange}
+      />
+    </div>
+    <button onClick={() => deleteTask(task.id)}
+    className="delete_Button">Delete</button>
+    <button onClick={() => navigate("/edit")}>Edit</button>
+
+
+              </section>
+              </> 
+          })}
+</article>    
+</>   
