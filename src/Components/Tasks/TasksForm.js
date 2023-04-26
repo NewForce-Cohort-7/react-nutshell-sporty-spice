@@ -3,18 +3,17 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { sendTask } from "./TasksApiManager"
-import Calendar from 'react-calendar'
+
 
 import "./Tasks.css"
 
 export const TaskForm = () => {
 
-    const [date, onChange] = useState(new Date());
-
 
     const [task, update] = useState({
-        task: "", 
-        dateToComplete: ""
+        toDo: "", 
+        dateToComplete: "",
+        taskComplete: false
     })
   
     const navigate = useNavigate()
@@ -27,10 +26,11 @@ export const TaskForm = () => {
     const taskSubmitAPI = {//Create the task object to be saved to the API
        //primary key, id, is set by server
         userId: nutshellUserObject.id,
-        task: task.task,
-        date: task.dateToComplete
+        task: task.toDo,
+        date: task.dateToComplete,
+        finished: false
     }
-   return sendTask()
+   return sendTask(taskSubmitAPI)
     .then(( )=>  {
         navigate("/tasks") 
     
@@ -42,17 +42,17 @@ export const TaskForm = () => {
             <h2 className="taskForm__title">New Task</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="task">Task:</label>
+                    <label htmlFor="toDo">Task:</label>
                     <input
                         required autoFocus
                         type="text"
                         className="form-control"
                         placeholder="What do you need to do?"
-                        value={task?.task}
+                        value={task.toDo}
                         onChange={ 
                             (event) => {
                             const copy = {...task} 
-                            copy.task = event.target.value 
+                            copy.toDo = event.target.value 
                             update(copy)
                         } 
                     }/>
@@ -61,7 +61,18 @@ export const TaskForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="date">Date: </label><div>
-                    <Calendar onChange={onChange} value={task.dateToComplete} />
+                    <input
+                        required autoFocus
+                        type="date"
+                        className="form-control"
+                        value={task.dateToComplete}
+                        onChange={ 
+                            (event) => {
+                            const copy = {...task} 
+                            copy.dateToComplete = event.target.value 
+                            update(copy)
+                        } 
+                    }/>
                  </div>
                 </div>
             </fieldset>

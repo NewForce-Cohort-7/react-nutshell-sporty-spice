@@ -1,7 +1,7 @@
 import { Route, Routes, Outlet } from "react-router-dom"
-import { TaskList } from "../Tasks/Tasks"
-import {TaskForm } from "../Tasks/TasksForm"
-
+import { TaskList } from "../Tasks/TaskList"
+import { TaskForm } from "../Tasks/TasksForm"
+import { TaskEdit } from "../Tasks/TasksEdit"
 
 export const ApplicationViews = () => {
 	return ( 
@@ -18,6 +18,7 @@ export const ApplicationViews = () => {
 
 		<Route path="tasks" element={ <TaskList /> } />
 		<Route path="newtask" element={ <TaskForm /> } />
+		<Route path="task/:taskId/edit" element={ <TaskEdit/> } />
 
 </Route>
 	</Routes>
