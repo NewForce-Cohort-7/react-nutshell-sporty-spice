@@ -1,5 +1,7 @@
 import { Route, Routes, Outlet } from "react-router-dom"
-
+import { ArticleList } from "../articles/ArticleList"
+import { ArticleForm } from "../articles/ArticleForm"
+import { ArticleEdit } from "../articles/ArticleEdit"
 
 export const ApplicationViews = () => {
 	return ( 
@@ -13,6 +15,9 @@ export const ApplicationViews = () => {
 	</>
 	
 }>
+	<Route path="articles" element={ <ArticleList /> } />
+	<Route path="articles/:articleId/edit" element={ <ArticleEdit /> } />
+	<Route path="article/create" element={ <ArticleForm /> } />
 </Route>
 	</Routes>
 	)
