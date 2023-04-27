@@ -3,7 +3,7 @@ import { useNavigate } from "react-router"
 import { ChatList } from "./MessageList.js"
 // import "/.Messages.css"
 
-export const MessageForm = () => {
+export const MessageForm = ({updateMessages}) => {
     
     const [message, update] = useState({
         description: ""
@@ -35,38 +35,13 @@ const handleSaveButtonClick = (event) => {
             "content-Type": "application/json"
         },
         body: JSON.stringify(chatToSendToAPI)
-    
-    // .then(() => fetch(`http://localhost:8088/messages`))
-    .then(response => response.json())
-    // .then(() => {
-    //    navigate("/messages")
-       .then(returnedMessages => update(returnedMessages))
-       .then(()=> update({description: ""}) )
     })
+    .then (()=>fetch(`http://localhost:8088/messages`))
+    .then(response => response.json())
+    .then((messageArray) => { updateMessages(messageArray) })
 
-    // })    
+    
 }
-
-
-// fetch (`http://localhost:8088/persons`, {
-//     method: "POST",
-//     headers: {
-//         "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(newPerson),
-// })
-// .then(() => fetch(`http://localhost:8088/persons?_expand=zodiac`))
-// .then(r => r.json())
-// .then(returnedPersons => updatePersons(returnedPersons))
-// .then(()=> update({ name: "", zodiacId: ""}) )
-// };
-
-
-// useEffect(() => {
-//     fetch(`http://localhost:8088/messages`)
-//       .then(response => response.json())
-//       .then((messageArray) => { update(messageArray) })
-//   }, [])
 
 
 return (

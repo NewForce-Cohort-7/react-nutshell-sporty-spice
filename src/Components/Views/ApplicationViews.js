@@ -1,8 +1,8 @@
 import { Route, Routes, Outlet } from "react-router-dom"
-import { MessageForm } from "../Messages/MessageForm.js"
-import { MessageList } from "../Messages/MessageList.js"
-// import "/.Messages.css"
-
+import { ArticleList } from "../articles/ArticleList"
+import { ArticleForm } from "../articles/ArticleForm"
+import { ArticleEdit } from "../articles/ArticleEdit"
+import { MessageContainer } from "../Messages/MessageContainer.js"
 
 export const ApplicationViews = () => {
 	return ( 
@@ -15,9 +15,11 @@ export const ApplicationViews = () => {
 	</>
 	
 }>
+	<Route path="articles" element={ <ArticleList /> } />
+	<Route path="articles/:articleId/edit" element={ <ArticleEdit /> } />
+	<Route path="article/create" element={ <ArticleForm /> } />
 </Route>
-{/* <Route path="/messages" element={<ChatList MessageBoard/>} /> */}
-<Route path="/messages" element={<><MessageForm/> <MessageList/></>} />
+<Route path="/messages" element={<MessageContainer/>} />
 
 	</Routes>
 	
