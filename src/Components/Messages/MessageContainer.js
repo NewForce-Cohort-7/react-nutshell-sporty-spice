@@ -8,7 +8,7 @@ export const MessageContainer = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:8088/messages`)
+        fetch(`http://localhost:8088/messages?_expand=user`)
           .then(response => response.json())
           .then((messageArray) => { update(messageArray) })
       }, [])

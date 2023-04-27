@@ -12,6 +12,8 @@ export const MessageList = ({message}) => {
         <article className="chats">
           {message.map((messages) => (
             <section className="chat" key={`chat--${messages.id}`}>
+                {messages.user?.username}
+                
                 {messages.description}
             </section>
           ))}
