@@ -1,6 +1,9 @@
 import { useState} from "react"
 import { useNavigate } from "react-router-dom"
-import { getEventForm } from "../EventsAPIManager"
+import { createEvent } from "../EventsAPIManager"
+import { Button } from "react-bootstrap/Button"
+import { Form } from "react-bootstrap/Form"
+
 
 
 export const EventForm = () => {
@@ -27,7 +30,7 @@ const sendEventToAPI = {
 }
 
         
- return getEventForm(sendEventToAPI)
+ createEvent(sendEventToAPI)
   .then(() => {
     navigate("/event")
   })
@@ -36,8 +39,8 @@ const sendEventToAPI = {
 
 
     return (
-        <form className="eventForm">
-            <h2 className="eventForm__title">New Event!</h2>
+        <Form> className="eventForm">
+            <h2 className="eventForm__title">New Event</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="eventName">Event name:</label>
@@ -95,7 +98,7 @@ const sendEventToAPI = {
             className="btn btn-primary">
                 Submit Event
             </button>
-        </form>
+        </Form>
    )
 }
                    

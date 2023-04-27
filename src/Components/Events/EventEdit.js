@@ -4,32 +4,36 @@ import { getEventEdit, saveEventEdit } from "../EventsAPIManager"
 
 
 export const EventEdit = () => {
-    const [event, assignEvent] = useState({
+    const [event, updateEvent] = useState({
         name: "",
         date: "",
         location: ""
     })
-    const { eventId } = useParams()
-    const navigate = useNavigate()
+     const navigate = useNavigate()
+     const { eventId } =useParams()
+   
 
     useEffect(() => {
         getEventEdit(eventId)
             .then((data) => {
-                assignEvent(data)
+                updateEvent(data)
+                console.log(data)
             })
     }, [eventId])
 
+
     const handleSaveButtonClick = (evt) => {
         evt.preventDefault()
-
-       saveEventEdit
+        console.log("you clicked it")
+            saveEventEdit(event)
             .then(() => {
                 navigate("/event")
             })
     }
 
 
-    return <form className="eventForm">
+    return (
+    <form className="eventForm">
     <h2 className="eventForm__title">New Event!</h2>
     <fieldset>
         <div className="form-group">
@@ -39,14 +43,13 @@ export const EventEdit = () => {
                 type="text"
                 className="form-control"
                 placeholder="List the name of your event"
-                value={event.name}
-                onChange={
-                    (evt) => {
-                        const copy = {...event}
-                        copy.name = evt.target.value
-                    assignEvent(copy)
-                    }
-                } />
+                value={event?.name}
+                onChange={(evt) => {
+                    const copy = {...event}
+                    copy.name = evt.target.value
+                    updateEvent(copy)
+                }
+           }  />
         </div>
     </fieldset>
     <fieldset>
@@ -56,14 +59,13 @@ export const EventEdit = () => {
                 required autoFocus
                 type="date"
                 className="form-control"
-                value={event.date}
-                onChange={
-                    (evt) => {
-                        const copy = {...event}
-                        copy.date = evt.target.value
-                        assignEvent(copy)
-                    }
-                } />
+                value={event?.date}
+                onChange={(evt) => {
+                    const copy = {...event}
+                    copy.date = evt.target.value
+                    updateEvent(copy)
+                }
+            } />
         </div>
     </fieldset>
     <fieldset>
@@ -73,20 +75,20 @@ export const EventEdit = () => {
                 required autoFocus
                 type="text"
                 className="form-control"
-                value={event.location}
-                onChange={
-                    (evt) => {
-                        const copy = {...event}
-                        copy.location = evt.target.value
-                        assignEvent(copy)
-                    }
-                } />
+                value={event?.location}
+                onChange={(evt) => {
+                    const copy = {...event}
+                    copy.location = evt.target.value
+                    updateEvent(copy)
+                }
+            } />
         </div>
     </fieldset>
     <button
     onClick={ (clickEvent) => handleSaveButtonClick(clickEvent)}
     className="btn btn-primary">
-        Save Edit
+        Save Edits
     </button>
     </form>
+    )
 }

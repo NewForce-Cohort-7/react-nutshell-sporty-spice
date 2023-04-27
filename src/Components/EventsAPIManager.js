@@ -1,23 +1,21 @@
-export const getAllEvents = () => {
-      return fetch(`http://localhost:8088/events`)
+export const getEvents = () => {
+      return fetch(`http://localhost:8088/events?_expand=user`)
         .then(response => response.json()) 
     }
    
-    export const getEventForm = (eventObject) => {
+    export const createEvent = (sendEventToAPI) => {
     return fetch(`http://localhost:8088/events`, {
         method: "POST",
         headers: {
             "Content-Type":"application/json"
         },
-        body: JSON.stringify(eventObject)
+        body: JSON.stringify(sendEventToAPI)
     })
-    .then(() => {
-        getAllEvents()
-    })
-}
+    .then(response => response.json())}
+
 
 export const getEventEdit = (eventId) => {
-    return fetch(`http://localhost:8088/events/${eventId}`)
+   return fetch(`http://localhost:8088/events/${eventId}`)
     .then(response => response.json())
  }
 
@@ -32,3 +30,6 @@ export const getEventEdit = (eventId) => {
         })
             .then(response => response.json())
         }
+
+
+    

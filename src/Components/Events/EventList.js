@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react"
-import { getAllEvents } from "../EventsAPIManager"
-import { Event } from "./Events"
 import { useNavigate } from "react-router-dom"
 import "./Events.css"
+import { getEvents } from "../EventsAPIManager"
 
 
 
@@ -15,33 +14,41 @@ export const EventList = () => {
 
     useEffect(
         () => {
-            getAllEvents()
-            .then((eventsArray) => {
-                setEvents(eventsArray)
-                console.log(eventsArray)
-            } ) 
+            getEvents()
+            .then((events) => {
+                setEvents(events)
+                console.log(events)
+            }
+             ) 
         },
         []
 
     )
     
 
-    return (
+    return <>
         
-        <><div>
-            <h2 className="eventsList">Event List</h2>
-            <article className="eventList">
-                {events.map(event => (
-                    <section className="events" key={`event--${event.id}`}>
+        
+        <div>
+            <h2>Event List</h2>
+            <button onClick={() => navigate("event/create")}>Create Event</button>
+            
+            <article className="events">
+                {
+                events.map(
+                    (event) => (
+                    <section className="eventCard" key={`event--${event.id}`}>
                         <div>Name: {event?.name}</div>
                         <div>Date: {event?.date}</div>
                         <div>Location: {event?.location}</div>
+                        <button onClick={() => navigate(`/event/${event.id}/edit`)}>Edit</button> 
                     </section>
+                    // line 44 needed to call the specific event id so that the button is with each established one
                 ))}
-                <button onClick={() => navigate("event/create")}>Create Event</button>
+                
             </article>
-        </div></>
-    )
+       </div> </>
+    
   
 }
 
