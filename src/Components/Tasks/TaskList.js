@@ -48,15 +48,16 @@ const deleteTask = (id) => {
     return <>
 
     <h2>To-Do List</h2>
+    <article className="tasks">
     <button onClick={() => navigate("/newtask")}>New Task</button>
-
         <section className="tasks"> My Task List </section>
-              {tasks.map((task) => {
-            return <>
-            <section className="tasks" key={task.id}>
-            <Link to={`/tasks/${task.id}/edit`}>{task.toDo}</Link>
-                <div>To Do: {task.task}</div>
-                <div>Date: {task.dateToComplete}</div>
+              {
+              tasks.map(
+                (task) => {
+            return <section className="tasks" key={task.id}>
+              <header>
+            <Link to={`/tasks/${task.id}/edit`}>{task.task}</Link></header>
+                 <div>Date: {task.date}</div>
                 <div>
       <Checkbox
         label="Done!"
@@ -66,12 +67,13 @@ const deleteTask = (id) => {
     </div>
     <button onClick={() => deleteTask(task.id)}
     className="delete_Button">Delete</button>
-    <button onClick={() => navigate("/edit")}>Edit</button>
+
 
 
               </section>
-              </> 
+      
           })}
+          </article>
 </>}
 
 
