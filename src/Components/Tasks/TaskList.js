@@ -53,7 +53,7 @@ const deleteTask = (id) => {
         <section className="tasks"> My Task List </section>
               {tasks.map((task) => {
             return <>
-            <section className="task" key={task.id}>
+            <section className="tasks" key={task.id}>
             <Link to={`/tasks/${task.id}/edit`}>{task.toDo}</Link>
                 <div>To Do: {task.task}</div>
                 <div>Date: {task.dateToComplete}</div>
