@@ -11,9 +11,9 @@ export const TaskForm = () => {
 
 
     const [task, update] = useState({
-        toDo: "", 
-        dateToComplete: "",
-        taskComplete: false
+        task: "", 
+        date: "",
+        finished: false
     })
   
     const navigate = useNavigate()
@@ -26,8 +26,8 @@ export const TaskForm = () => {
     const taskSubmitAPI = {//Create the task object to be saved to the API
        //primary key, id, is set by server
         userId: nutshellUserObject.id,
-        task: task.toDo,
-        date: task.dateToComplete,
+        task: task.task,
+        date: task.date,
         finished: false
     }
    return sendTask(taskSubmitAPI)
@@ -48,11 +48,11 @@ export const TaskForm = () => {
                         type="text"
                         className="form-control"
                         placeholder="What do you need to do?"
-                        value={task.toDo}
+                        value={task.task}
                         onChange={ 
                             (event) => {
                             const copy = {...task} 
-                            copy.toDo = event.target.value 
+                            copy.task = event.target.value 
                             update(copy)
                         } 
                     }/>
@@ -65,11 +65,11 @@ export const TaskForm = () => {
                         required autoFocus
                         type="date"
                         className="form-control"
-                        value={task.dateToComplete}
+                        value={task.date}
                         onChange={ 
                             (event) => {
                             const copy = {...task} 
-                            copy.dateToComplete = event.target.value 
+                            copy.date = event.target.value 
                             update(copy)
                         } 
                     }/>
@@ -78,7 +78,7 @@ export const TaskForm = () => {
             </fieldset>
             <button 
             onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
-                className="btn btn-primary">
+                className="taskButton">
                 Submit
             </button>
         </form>

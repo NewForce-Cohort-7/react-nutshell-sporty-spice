@@ -8,6 +8,7 @@ import "./Tasks.css"
 //list out all the products
 export const TaskList = (task) => {
     const [ tasks, setTasks ] = useState([])
+    const [checked, setChecked] = useState(false);
     const localNutshellUser = localStorage.getItem("nutshell_user")
     const nutshellUserObject = JSON.parse(localNutshellUser)
     const navigate = useNavigate()
@@ -30,12 +31,35 @@ const deleteTask = (id) => {
    })
        .then(response => response.json())
        .then(() => {
-          setTasks()})
+        getTasks()
+        .then((taskArray) => {
+         setTasks(taskArray)
+        })
+        })
        }
-    //checkbox
-    const [checked, setChecked] = useState(false);
-    const handleChange = () => {
-      setChecked(!checked)
+   
+   //complete/incomplete
+
+   
+       //checkbox
+  
+    const finishTask = (taskId) => {
+   
+      //patch task to finished
+return fetch(`http://localhost:8088/tasks/${taskId}`, {
+     method: "PATCH",  //like a put but for one property
+    headers: {
+    "Content-Type": "application/json"
+    },
+    body: JSON.stringify({finished: true})//change only one property for a specific object
+})
+.then(() => {// use this to refresh the state 
+  getTasks()//get the tasks
+  .then((taskArray) => { // pull from database
+   setTasks(taskArray)//changes the state which prints (refreshes without the refresh)
+  })
+})
+
     }
     const Checkbox = ({ label, value, onChange }) => {
       return (
@@ -45,37 +69,28 @@ const deleteTask = (id) => {
         </label>
       );
     };
+
+
+
     return <>
-
-    <h2>To-Do List</h2>
     <article className="tasks">
-    <button onClick={() => navigate("/newtask")}>New Task</button>
-        <section className="tasks"> My Task List </section>
-              {
-              tasks.map(
-                (task) => {
-            return <section className="tasks" key={task.id}>
-              <header>
-            <Link to={`/tasks/${task.id}/edit`}>{task.task}</Link></header>
-                 <div>Date: {task.date}</div>
-                <div>
+    <h1>To-Do List</h1>
+    <button className="newTaskButton" onClick={() => navigate("/newtask")}>New Task</button>   
+       <section className="tasksToDo">Needs Completed </section>
+     {
+      tasks.map(
+          (task) => {
+        if (!task.finished)
+      {return <section className="tasklist" key={task.id}>
+        <header>
+      <Link to={`/tasks/${task.id}/edit`}>{task.task}</Link></header>
+           <div>Date: {task.date}</div>
+          <div>
       <Checkbox
-        label="Done!"
-        value={checked}
-        onChange={handleChange}
-      />
-    </div>
-    <button onClick={() => deleteTask(task.id)}
-    className="delete_Button">Delete</button>
-
-
-
-              </section>
-      
-          })}
-          </article>
-</>}
-
-
-
-    
+      label="Done!"
+      value={task.finished}
+      onChange={() => finishTask(task.id)}/></div>
+      <button onClick={() => deleteTask(task.id)}
+      className="delete_Button">Delete</button>
+      </section>  }})}
+     </article>  </>}

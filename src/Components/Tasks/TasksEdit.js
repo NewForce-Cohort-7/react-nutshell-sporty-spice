@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 
 
 export const TaskEdit = () => {
-    const [task, setTask] = useState({toDo: "", dateToComplete: ""})
+    const [task, setTask] = useState({task: "", date: ""})
     const { taskId } = useParams()
     const navigate = useNavigate()
   
@@ -46,10 +46,10 @@ export const TaskEdit = () => {
               type="text"
               className="form-control"
               placeholder="Edit Task"
-              value={task.toDo}
+              value={task.task}
               onChange={(event) => {
                 const copy = {...task}
-                copy.toDo = event.target.value
+                copy.task = event.target.value
                 setTask(copy)
               }}
             />
@@ -62,11 +62,11 @@ export const TaskEdit = () => {
                         required autoFocus
                         type="date"
                         className="form-control"
-                        value={task.dateToComplete}
+                        value={task.date}
                         onChange={ 
                             (event) => {
                             const copy = {...task} 
-                            copy.dateToComplete = event.target.value 
+                            copy.date = event.target.value 
                             setTask(copy)
                         } 
                     }/>

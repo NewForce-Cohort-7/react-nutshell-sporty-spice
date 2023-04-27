@@ -1,6 +1,6 @@
 // taskObject.js is a child component of TaskList.js
 
-import { Link } from "react-router-dom"
+/*import { Link } from "react-router-dom"
 import { useState, useNavigate } from "react"
 
 export const Ticket = ({ taskObject,  getAllTasks}) => { // all the variables in {} are props being passed down from the parent for us to use here (the child)
@@ -18,8 +18,6 @@ fetch(`http://localhost:8088/tasks/${taskObject.id}`, {
             .then(getAllTasks)
     }
 
-
-    // callback function - for each ticket, return HTML representation; footer is condensed if/else statement
     return <>
 
     <h2>To-Do List</h2>
@@ -30,7 +28,7 @@ fetch(`http://localhost:8088/tasks/${taskObject.id}`, {
             return <>
             <section className="task" key={task.id}>
                 <div>To Do: {task.task}</div>
-                <div>Date: {task.dateToComplete}</div>
+                <div>Date: {task.date}</div>
                 <div>
       <Checkbox
         label="Done!"
@@ -40,7 +38,6 @@ fetch(`http://localhost:8088/tasks/${taskObject.id}`, {
     </div>
     <button onClick={() => deleteTask(task.id)}
     className="delete_Button">Delete</button>
-    <button onClick={() => navigate("/edit")}>Edit</button>
 
 
               </section>
@@ -48,3 +45,4 @@ fetch(`http://localhost:8088/tasks/${taskObject.id}`, {
           })}
 </article>    
 </>   
+*/
