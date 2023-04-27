@@ -1,0 +1,105 @@
+
+.taskForm {
+    background-color:rgb(241, 202, 246)
+  
+  }
+#taskChart{
+  max-width: 250px;
+  max-height: 250px;
+  align-content: center;
+}
+ .newTask {
+  background-color: rgb(241, 202, 246);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: large;
+  display: flex;
+  flex-direction: column
+ }
+ 
+  .tasks {
+    background-color: rgb(241, 202, 246);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: large;
+
+  }
+  .tasksToDo {
+    background-color: rgb(241, 202, 246);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    font-size: x-large;
+    font-weight: bold;
+
+  }
+ 
+ .finishedTasks {
+  background-color: rgb(241, 202, 246);
+  text-align: left;
+
+ }
+ .tasklist {
+  background-color: rgb(241, 202, 246);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+ }
+  .field {
+      font-size: medium;
+      color: black ;
+  }
+
+
+ input:checked {
+   margin:10px;
+   margin-left:50px
+  
+
+  }
+  .delete_Button {
+    max-width: 100px;
+    margin-left: 50px;
+
+  }
+  
+  
+  .taskButton {
+     
+      background-color: green;
+      font-size: 16px;
+      color: white;
+      text-align: center;  
+      transition-duration: 0.4s;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 10px; 
+        
+  }
+  .taskButton:hover {background-color: #37b678}
+  
+  .taskButton:active {
+    background-color: #025d31;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+ .newTaskButton {
+     
+    background-color: #509be5;
+    font-size: 14px;
+    color: white;
+    text-align: center;  
+    transition-duration: 0.4s;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px;
+    max-width: 150px;
+ 
+}
+.newTaskButton:hover {background-color: #0a5bac}
+
+.newTaskButton:active {
+  background-color: #01274d;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+} 
