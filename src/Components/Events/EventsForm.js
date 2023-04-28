@@ -1,8 +1,9 @@
+// This file wil display the form that users will use when they wish to fill out new events.
+
 import { useState} from "react"
 import { useNavigate } from "react-router-dom"
 import { createEvent } from "../EventsAPIManager"
-import { Button } from "react-bootstrap/Button"
-import { Form } from "react-bootstrap/Form"
+import { Form, Button } from "react-bootstrap/"
 
 
 
@@ -37,33 +38,23 @@ const sendEventToAPI = {
   
     }
 
-
+// Event form is in react bootstrap formatting
     return (
-        <Form> className="eventForm">
-            <h2 className="eventForm__title">New Event</h2>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="eventName">Event name:</label>
-                    <input
-                        required autoFocus
-                        type="text"
-                        className="form-control"
-                        placeholder="List the name of your event"
+        <Form> 
+            <Form.Group className="mb-3" controlId= "eventForm">
+                    <Form.Label>Event Name</Form.Label> 
+                    <Form.Control type="text" placeholder="List the name of your event" 
                         value={event.name}
                         onChange={
                             (evt) => {
                                 const copy = {...event}
                                 copy.name = evt.target.value
-                            update(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="date">Date:</label>
-                    <input
-                        required autoFocus
+                                update(copy)}}
+                            />
+                   </Form.Group>     
+                <Form.Group className="mb-3" controlId="eventDate">
+                    <Form.Label>Date</Form.Label>
+                    <Form.Control
                         type="date"
                         className="form-control"
                         value={event.date}
@@ -71,16 +62,12 @@ const sendEventToAPI = {
                             (evt) => {
                                 const copy = {...event}
                                 copy.date = evt.target.value
-                                update(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="location">Location:</label>
-                    <input
-                        required autoFocus
+                            update(copy)}}
+                                />                              
+                              </Form.Group>  
+                <Form.Group className="mb-3" controlId="eventLocation">
+                    <Form.Label>Location</Form.Label>
+                    <Form.Control
                         type="text"
                         className="form-control"
                         value={event.location}
@@ -88,16 +75,17 @@ const sendEventToAPI = {
                             (evt) => {
                                 const copy = {...event}
                                 copy.location = evt.target.value
-                                update(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <button
+                            update(copy)}}
+                                />                              
+                              </Form.Group> 
+           
+            <Button
+            variant="primary"
+            type="submit"
             onClick={ (clickEvent) => handleSaveButtonClick(clickEvent)}
-            className="btn btn-primary">
+            bsPrefix="send-event-button">
                 Submit Event
-            </button>
+            </Button>
         </Form>
    )
 }
