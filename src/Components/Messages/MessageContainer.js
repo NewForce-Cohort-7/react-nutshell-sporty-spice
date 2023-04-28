@@ -15,8 +15,8 @@ export const MessageContainer = () => {
   
     return (
         <>
-            <MessageForm  updateMessages={update}/>
             <MessageList message={message}  />
+            <MessageForm  updateMessages={update}/>
         </>
     )
 }
