@@ -1,44 +1,37 @@
-// This file wil display the form that users will use when they wish to fill out new events.
+import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import { getEventEdit, saveEventEdit } from "../EventsAPIManager"
+import { Form, Button } from "react-bootstrap"
 
-import { useState} from "react"
-import { useNavigate } from "react-router-dom"
-import { createEvent } from "../EventsAPIManager"
-import { Form, Button } from "react-bootstrap/"
-
-
-
-export const EventForm = () => {
-    const [event, update] = useState({
+export const EventEdit = () => {
+    const [event, updateEvent] = useState({
         name: "",
         date: "",
         location: ""
- })
-const navigate = useNavigate()
+    })
+     const navigate = useNavigate()
+     const { eventId } =useParams()
+   
 
-    const localNutshellUser = localStorage.getItem("nutshell_user")
-    const nutshellUserObject = JSON.parse(localNutshellUser) 
+    useEffect(() => {
+        getEventEdit(eventId)
+            .then((data) => {
+                updateEvent(data)
+                console.log(data)
+            })
+    }, [eventId])
 
 
-const handleSaveButtonClick = (evt) => {
+    const handleSaveButtonClick = (evt) => {
         evt.preventDefault()
-        console.log("You clicked the  button.")
-
-const sendEventToAPI = {
-    userId: nutshellUserObject.id,
-    name: event.name,
-    date: event.date,
-    location: event.location
-}
-
-        
- createEvent(sendEventToAPI)
-  .then(() => {
-    navigate("/event")
-  })
-  
+        console.log("you clicked it")
+            saveEventEdit(event)
+            .then(() => {
+                navigate("/event")
+            })
     }
 
-// Event form is in react bootstrap formatting
+
     return (
         <Form> 
             <Form.Group className="mb-3" controlId= "eventForm">
@@ -49,7 +42,7 @@ const sendEventToAPI = {
                             (evt) => {
                                 const copy = {...event}
                                 copy.name = evt.target.value
-                                update(copy)}}
+                                updateEvent(copy)}}
                             />
                    </Form.Group>     
                 <Form.Group className="mb-3" controlId="eventDate">
@@ -62,7 +55,7 @@ const sendEventToAPI = {
                             (evt) => {
                                 const copy = {...event}
                                 copy.date = evt.target.value
-                            update(copy)}}
+                            updateEvent(copy)}}
                                 />                              
                               </Form.Group>  
                 <Form.Group className="mb-3" controlId="eventLocation">
@@ -75,7 +68,7 @@ const sendEventToAPI = {
                             (evt) => {
                                 const copy = {...event}
                                 copy.location = evt.target.value
-                            update(copy)}}
+                            updateEvent(copy)}}
                                 />                              
                               </Form.Group> 
            
@@ -84,9 +77,8 @@ const sendEventToAPI = {
             type="submit"
             onClick={ (clickEvent) => handleSaveButtonClick(clickEvent)}
             bsPrefix="send-event-button">
-                Submit Event
+                Save Edit
             </Button>
         </Form>
    )
 }
-                   
