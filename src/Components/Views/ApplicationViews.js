@@ -1,4 +1,5 @@
 import { Route, Routes, Outlet } from "react-router-dom"
+import { MessageContainer } from "../Messages/MessageContainer"
 import { ArticleList } from "../articles/ArticleList"
 import { ArticleForm } from "../articles/ArticleForm"
 import { ArticleEdit } from "../articles/ArticleEdit"
@@ -13,7 +14,6 @@ export const ApplicationViews = () => {
 	<Routes>
 <Route path="/" element={
 <>
-
 	<h2> Welcome to NutShell</h2>
 	<div>We got it all</div>
 	<Outlet />
@@ -28,5 +28,6 @@ export const ApplicationViews = () => {
 	<Route path="article/create" element={ <ArticleForm /> } />
 </Route>
 	</Routes>
+	
 	)
 }
